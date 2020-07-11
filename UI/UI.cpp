@@ -14,3 +14,9 @@ UI::UI(){
 void UI::render_score(sf::RenderWindow &window){
     window.draw(score);
 }
+
+void UI::set_score(Engine &engine){
+    std::ostringstream oStrStream;
+    oStrStream << engine.score;
+    score.setString("Score: "+ oStrStream.str());
+}

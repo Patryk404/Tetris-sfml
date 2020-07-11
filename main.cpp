@@ -30,6 +30,7 @@ int main()
                engine.check_lines();
                engine.check_gameover();
                engine.set_default();
+               UI.set_score(engine);
         window.clear();
         engine.render(window);
         UI.render_score(window);

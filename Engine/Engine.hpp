@@ -2,9 +2,9 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 #include <time.h>
+#pragma once
 #include "../Blocks/Block.hpp"
 #include "../Map/Map.hpp"
-#include "../UI/UI.hpp"
 
 class Engine {
     public:
@@ -45,5 +45,5 @@ class Engine {
         Map Map;
         bool check();
 
-        friend UI;
+        friend class UI;
 };

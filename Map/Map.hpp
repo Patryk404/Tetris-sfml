@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#pragma once
 #include "../Blocks/Block.hpp"
 struct Map {
     sf::RectangleShape board;
