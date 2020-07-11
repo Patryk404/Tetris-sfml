@@ -3,11 +3,17 @@
 Engine::Engine(){
     direction = 0;
     delay = 1;
+    score = 0;
     rotate = false;
     game = true;
     first = true;
     Map.use(300,600);
     s.setSize(sf::Vector2f(18,18));
+    if(!buffer.loadFromFile("music/dissmiss.wav")){
+        std::cout<<"Error"<<std::endl;
+    }
+    dissmiss.setBuffer(buffer);
+    dissmiss.setVolume(100);
     time = 0;
     for (int i=0; i<4; i++)
     {
@@ -21,13 +27,17 @@ Engine::Engine(){
     }
     music.setVolume(50);
     music.setLoop(true);
-    music.play();
+    //music.play();
 }
 
 bool Engine::check(){
    for (int i=0;i<4;i++)
-      if (a[i].x<0 || a[i].x>=10 || a[i].y>=20) return false;
-      else if (Map.field[a[i].y][a[i].x]) return false;
+      if (a[i].x<0 || a[i].x>=10 || a[i].y>=20) {
+            return false;
+      }
+      else if (Map.field[a[i].y][a[i].x]) {
+            return false;
+      }
 
    return true;
 }
@@ -104,6 +114,11 @@ void Engine::check_lines(){
             if (count<10) {
                     k--;
                 }
+            if (count==10)
+            {
+                dissmiss.play();
+                score += 10;
+            }
         }
 }
 

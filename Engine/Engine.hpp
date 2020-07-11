@@ -4,6 +4,7 @@
 #include <time.h>
 #include "../Blocks/Block.hpp"
 #include "../Map/Map.hpp"
+#include "../UI/UI.hpp"
 
 class Engine {
     public:
@@ -32,12 +33,17 @@ class Engine {
         int delay;
         bool game;
         int direction;
+        int score;
         bool rotate;
         bool first;
         sf::Music music;
+        sf::SoundBuffer buffer;
+        sf::Sound dissmiss;
         sf::RectangleShape s;
         sf::Clock timer;
         Block a[4],b[4];
         Map Map;
         bool check();
+
+        friend UI;
 };
