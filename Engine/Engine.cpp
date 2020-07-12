@@ -69,7 +69,7 @@ void Engine::rotation(){
         }
 }
 
-void Engine::tick(std::array<Block, 4> block){
+void Engine::tick(Block block[]){
      if (time>delay && game)
             {
                 for (int i=0;i<4;i++) { // one move down
@@ -97,12 +97,9 @@ void Engine::tick(std::array<Block, 4> block){
                     a[i].y = next_block[i].y;
                    }
                    s.setFillColor(sf::Color(rand()%255,rand()%255,rand()%255));
-<<<<<<< HEAD
                     // Randomizing next block and giving it into UI class
                     block = randomize_block();
                     // ///////////////////////////////////////
-=======
->>>>>>> parent of 0d52bd4... Added functional next_block
                 }
                 else if(first){
                     int n=rand()%7;
@@ -112,12 +109,9 @@ void Engine::tick(std::array<Block, 4> block){
                     a[i].y = next_block[i].y;
                    }
                     s.setFillColor(sf::Color(rand()%255,rand()%255,rand()%255));
-<<<<<<< HEAD
                     // Randomizing next block and giving it into UI class
                     block = randomize_block();
                     // ///////////////////////////////////////
-=======
->>>>>>> parent of 0d52bd4... Added functional next_block
                    first = false;
                 }
               timer.restart();
@@ -210,15 +204,3 @@ void Engine::check_events(sf::Event &event){
 void Engine::run_timer(){
 time = timer.getElapsedTime().asSeconds();
 }
-
-std::array<Block, 4> Engine::randomize_block(){
-    // Randomizing next block and giving it into UI class
-    Block next_block[4];
-    int n= rand()%7;
-    for(int i=0; i<4; i++){ //randoming our next_block
-    next_block[i].x = figures[n][i] % 2;
-    next_block[i].y = figures[n][i] /2;
-    }
-    return next_block;
-}
-
