@@ -27,7 +27,7 @@ Engine::Engine(){
     }
     music.setVolume(50);
     music.setLoop(true);
-    //music.play();
+    music.play();
 }
 
 bool Engine::check(){
@@ -69,7 +69,7 @@ void Engine::rotation(){
         }
 }
 
-void Engine::tick(Block block[]){
+void Engine::tick(std::array<Block, 4> block){
      if (time>delay && game)
             {
                 int random_spawnpoint = rand()%6+2;
@@ -90,14 +90,7 @@ void Engine::tick(Block block[]){
                    }
                    s.setFillColor(sf::Color(rand()%255,rand()%255,rand()%255));
                     // Randomizing next block and giving it into UI class
-                    Block next_block[4];
-                    int n= rand()%7;
-                    int random_spawnpoint = rand()%6+2;
-                    for(int i=0; i<4; i++){ //randoming our next_block
-                        next_block[i].x = figures[n][i] % 2;
-                        next_block[i].y = figures[n][i] /2;
-                        block[i] = next_block[i];
-                    }
+                    block = randomize_block();
                     // ///////////////////////////////////////
                 }
                 else if(first){
@@ -108,14 +101,7 @@ void Engine::tick(Block block[]){
                    }
                     s.setFillColor(sf::Color(rand()%255,rand()%255,rand()%255));
                     // Randomizing next block and giving it into UI class
-                    Block next_block[4];
-                    int n= rand()%7;
-                    int random_spawnpoint = rand()%6+2;
-                    for(int i=0; i<4; i++){ //randoming our next_block
-                        next_block[i].x = figures[n][i] % 2;
-                        next_block[i].y = figures[n][i] /2;
-                        block[i] = next_block[i];
-                    }
+                    block = randomize_block();
                     // ///////////////////////////////////////
                    first = false;
                 }
@@ -209,3 +195,15 @@ void Engine::check_events(sf::Event &event){
 void Engine::run_timer(){
 time = timer.getElapsedTime().asSeconds();
 }
+
+std::array<Block, 4> Engine::randomize_block(){
+    // Randomizing next block and giving it into UI class
+    Block next_block[4];
+    int n= rand()%7;
+    for(int i=0; i<4; i++){ //randoming our next_block
+    next_block[i].x = figures[n][i] % 2;
+    next_block[i].y = figures[n][i] /2;
+    }
+    return next_block;
+}
+

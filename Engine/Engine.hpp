@@ -11,7 +11,7 @@ class Engine {
         Engine();
         void move();
         void rotation();
-        void tick(Block block[]);
+        void tick(std::array<Block, 4> block);
         void check_lines();
         void check_gameover();
         void run_timer();
@@ -44,6 +44,7 @@ class Engine {
         Block a[4],b[4];
         Map Map;
         bool check();
+        std::array<Block,4> randomize_block();
 
         friend class UI;
 };
