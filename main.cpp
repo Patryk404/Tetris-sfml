@@ -32,8 +32,8 @@ int main()
                engine.set_default();
                UI.set_score(engine);
         window.clear();
-        engine.render(window);
         UI.render_score(window);
+        engine.render(window);
         window.display();
     }
         return 0;

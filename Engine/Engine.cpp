@@ -1,13 +1,13 @@
 #include "Engine.hpp"
 
 Engine::Engine(){
-    direction = 0;
+    direction = 5;
     delay = 1;
     score = 0;
     rotate = false;
     game = true;
     first = true;
-    Map.use(300,600);
+    Map.use(200,425);
     s.setSize(sf::Vector2f(18,18));
     if(!buffer.loadFromFile("music/dissmiss.wav")){
         std::cout<<"Error"<<std::endl;
@@ -72,15 +72,21 @@ void Engine::rotation(){
 void Engine::tick(){
      if (time>delay && game)
             {
-                for (int i=0;i<4;i++) { b[i]=a[i]; a[i].y+=1; }
+                int random_spawnpoint = rand()%6+2;
+                for (int i=0;i<4;i++) {
+                        b[i]=a[i]; a[i].y+=1;
+                }
+
                 if (!check())
                 {
-                 for (int i=0;i<4;i++) Map.field[b[i].y][b[i].x]=1;
+                 for (int i=0;i<4;i++) {
+                        Map.field[b[i].y][b[i].x]=1;
+                 }
 
                  int n=rand()%7;
                  for (int i=0;i<4;i++)
                    {
-                    a[i].x = figures[n][i] % 2;
+                    a[i].x = figures[n][i] % 2 + random_spawnpoint;
                     a[i].y = figures[n][i] / 2;
                    }
                    s.setFillColor(sf::Color(rand()%255,rand()%255,rand()%255));
@@ -89,7 +95,7 @@ void Engine::tick(){
                     int n=rand()%7;
                  for (int i=0;i<4;i++)
                    {
-                    a[i].x = figures[n][i] % 2;
+                    a[i].x = figures[n][i] % 2 + random_spawnpoint;
                     a[i].y = figures[n][i] / 2;
                    }
                     s.setFillColor(sf::Color(rand()%255,rand()%255,rand()%255));
@@ -143,7 +149,7 @@ void Engine::set_default(){
 
 void Engine::render(sf::RenderWindow &window){
         window.draw(Map.board);
-            for (int i=0;i<20;i++)
+        for (int i=0;i<20;i++){
          for (int j=0;j<10;j++)
            {
              if (Map.field[i][j]==0) continue;
@@ -151,6 +157,7 @@ void Engine::render(sf::RenderWindow &window){
              s.move(200,200); //offset
              window.draw(s);
            }
+        }
     if(!first)
     {
     for (int i=0;i<4;i++)

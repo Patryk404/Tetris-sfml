@@ -36,6 +36,7 @@ class Engine {
         int score;
         bool rotate;
         bool first;
+        bool next_block;
         sf::Music music;
         sf::SoundBuffer buffer;
         sf::Sound dissmiss;
