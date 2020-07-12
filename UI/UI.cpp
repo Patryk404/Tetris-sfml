@@ -23,7 +23,7 @@ UI::UI(){
         std::cout<<"Error"<<std::endl;
     }
     background.setTexture(texture);
-
+    next_block_sp.setSize(sf::Vector2f(18,18));
 }
 
 void UI::render_score(sf::RenderWindow &window){
@@ -31,6 +31,13 @@ void UI::render_score(sf::RenderWindow &window){
     window.draw(right);
     window.draw(score);
     window.draw(next);
+    for (int i=0;i<4;i++)
+      {
+        next_block_sp.setPosition(next_block[i].x*20,next_block[i].y*20);
+        next_block_sp.setFillColor(sf::Color::Red);
+        next_block_sp.move(500,400); //offset
+        window.draw(next_block_sp);
+      }
 }
 
 void UI::set_score(Engine &engine){

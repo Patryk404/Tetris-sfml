@@ -11,7 +11,7 @@ class Engine {
         Engine();
         void move();
         void rotation();
-        void tick();
+        void tick(Block block[]);
         void check_lines();
         void check_gameover();
         void run_timer();
@@ -36,7 +36,6 @@ class Engine {
         int score;
         bool rotate;
         bool first;
-        bool next_block;
         sf::Music music;
         sf::SoundBuffer buffer;
         sf::Sound dissmiss;

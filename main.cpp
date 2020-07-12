@@ -26,7 +26,7 @@ int main()
                 engine.run_timer();
                 engine.move();
                 engine.rotation();
-               engine.tick();
+               engine.tick(UI.next_block);
                engine.check_lines();
                engine.check_gameover();
                engine.set_default();

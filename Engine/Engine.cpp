@@ -69,12 +69,19 @@ void Engine::rotation(){
         }
 }
 
-void Engine::tick(){
+void Engine::tick(Block block[]){
      if (time>delay && game)
             {
-                int random_spawnpoint = rand()%6+2;
-                for (int i=0;i<4;i++) {
+                for (int i=0;i<4;i++) { // one move down
                         b[i]=a[i]; a[i].y+=1;
+                }
+                Block next_block[4];
+                int n= rand()%7;
+                int random_spawnpoint = rand()%6+2;
+                for(int i=0; i<4; i++){ //randoming our next_block
+                    next_block[i].x = figures[n][i] % 2;
+                    next_block[i].y = figures[n][i] /2;
+                    block[i] = next_block[i];
                 }
 
                 if (!check())
@@ -86,8 +93,8 @@ void Engine::tick(){
                  int n=rand()%7;
                  for (int i=0;i<4;i++)
                    {
-                    a[i].x = figures[n][i] % 2 + random_spawnpoint;
-                    a[i].y = figures[n][i] / 2;
+                    a[i].x = next_block[i].x+ random_spawnpoint;
+                    a[i].y = next_block[i].y;
                    }
                    s.setFillColor(sf::Color(rand()%255,rand()%255,rand()%255));
                 }
@@ -95,8 +102,8 @@ void Engine::tick(){
                     int n=rand()%7;
                  for (int i=0;i<4;i++)
                    {
-                    a[i].x = figures[n][i] % 2 + random_spawnpoint;
-                    a[i].y = figures[n][i] / 2;
+                    a[i].x = next_block[i].x + random_spawnpoint;
+                    a[i].y = next_block[i].y;
                    }
                     s.setFillColor(sf::Color(rand()%255,rand()%255,rand()%255));
                    first = false;
