@@ -27,7 +27,7 @@ Engine::Engine(){
     }
     music.setVolume(50);
     music.setLoop(true);
-    music.play();
+    //music.play();
 }
 
 bool Engine::check(){
@@ -72,16 +72,9 @@ void Engine::rotation(){
 void Engine::tick(Block block[]){
      if (time>delay && game)
             {
+                int random_spawnpoint = rand()%6+2;
                 for (int i=0;i<4;i++) { // one move down
                         b[i]=a[i]; a[i].y+=1;
-                }
-                Block next_block[4];
-                int n= rand()%7;
-                int random_spawnpoint = rand()%6+2;
-                for(int i=0; i<4; i++){ //randoming our next_block
-                    next_block[i].x = figures[n][i] % 2;
-                    next_block[i].y = figures[n][i] /2;
-                    block[i] = next_block[i];
                 }
 
                 if (!check())
@@ -90,34 +83,38 @@ void Engine::tick(Block block[]){
                         Map.field[b[i].y][b[i].x]=1;
                  }
 
-                 int n=rand()%7;
                  for (int i=0;i<4;i++)
                    {
-                    a[i].x = next_block[i].x+ random_spawnpoint;
-                    a[i].y = next_block[i].y;
+                    a[i].x = block[i].x+ random_spawnpoint;
+                    a[i].y = block[i].y;
                    }
                    s.setFillColor(sf::Color(rand()%255,rand()%255,rand()%255));
-<<<<<<< HEAD
                     // Randomizing next block and giving it into UI class
-                    block = randomize_block();
+                    Block next_block[4];
+                    int n= rand()%7;
+                    for(int i=0; i<4; i++){ //randoming our next_block
+                        next_block[i].x = figures[n][i] % 2;
+                        next_block[i].y = figures[n][i] /2;
+                        block[i] = next_block[i];
+                    }
                     // ///////////////////////////////////////
-=======
->>>>>>> parent of 0d52bd4... Added functional next_block
                 }
                 else if(first){
-                    int n=rand()%7;
                  for (int i=0;i<4;i++)
                    {
-                    a[i].x = next_block[i].x + random_spawnpoint;
-                    a[i].y = next_block[i].y;
+                    a[i].x = block[i].x + random_spawnpoint;
+                    a[i].y = block[i].y;
                    }
                     s.setFillColor(sf::Color(rand()%255,rand()%255,rand()%255));
-<<<<<<< HEAD
                     // Randomizing next block and giving it into UI class
-                    block = randomize_block();
+                    Block next_block[4];
+                    int n= rand()%7;
+                    for(int i=0; i<4; i++){ //randoming our next_block
+                        next_block[i].x = figures[n][i] % 2;
+                        next_block[i].y = figures[n][i] /2;
+                        block[i] = next_block[i];
+                    }
                     // ///////////////////////////////////////
-=======
->>>>>>> parent of 0d52bd4... Added functional next_block
                    first = false;
                 }
               timer.restart();

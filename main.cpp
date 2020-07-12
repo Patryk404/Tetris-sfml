@@ -12,7 +12,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(600, 600), "Tetris");
     window.setFramerateLimit(30);
     Engine engine;
-    UI UI;
+    UI UI(engine);
     sf::Clock timer;
     while (window.isOpen())
     {
