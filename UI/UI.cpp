@@ -1,6 +1,6 @@
 #include "UI.hpp"
 
-UI::UI(Engine &engine){
+UI::UI(){
     if(!font.loadFromFile("font/tetris.ttf")){
         std::cout<<"Error"<<std::endl;
     }
@@ -24,16 +24,6 @@ UI::UI(Engine &engine){
     }
     background.setTexture(texture);
     next_block_sp.setSize(sf::Vector2f(18,18));
-    // Randomizing next block and giving it into UI class
-    Block next_block[4];
-    int n= rand()%7;
-    int random_spawnpoint = rand()%6+2;
-    for(int i=0; i<4; i++){ //randoming our next_block
-            next_block[i].x = engine.figures[n][i] % 2;
-            next_block[i].y = engine.figures[n][i] /2;
-            UI::next_block[i] = next_block[i];
-    }
-    // ///////////////////////////////////////
 }
 
 void UI::render_score(sf::RenderWindow &window){

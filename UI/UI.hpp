@@ -6,7 +6,7 @@
 #include <sstream>
 class UI {
 public:
-    UI(Engine &engine);
+    UI();
     void set_score(Engine &engine);
     void render_score(sf::RenderWindow &window);
     Block next_block[4];
