@@ -97,9 +97,12 @@ void Engine::tick(Block block[]){
                     a[i].y = next_block[i].y;
                    }
                    s.setFillColor(sf::Color(rand()%255,rand()%255,rand()%255));
+<<<<<<< HEAD
                     // Randomizing next block and giving it into UI class
                     block = randomize_block();
                     // ///////////////////////////////////////
+=======
+>>>>>>> parent of 0d52bd4... Added functional next_block
                 }
                 else if(first){
                     int n=rand()%7;
@@ -109,9 +112,12 @@ void Engine::tick(Block block[]){
                     a[i].y = next_block[i].y;
                    }
                     s.setFillColor(sf::Color(rand()%255,rand()%255,rand()%255));
+<<<<<<< HEAD
                     // Randomizing next block and giving it into UI class
                     block = randomize_block();
                     // ///////////////////////////////////////
+=======
+>>>>>>> parent of 0d52bd4... Added functional next_block
                    first = false;
                 }
               timer.restart();
