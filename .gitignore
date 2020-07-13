@@ -1,8 +1,16 @@
-*.dll
+
+sfml-audio-d-2.dll
+sfml-graphics-d-2.dll
+sfml-network-d-2.dll
+sfml-system-d-2.dll
+sfml-window-d-2.dll
+openal32.dll
+
+!bin/Release/openal32.dll
 
 obj
 
-bin 
+bin/Debug
 
 *.cbp
 
