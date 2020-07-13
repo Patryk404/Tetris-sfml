@@ -10,6 +10,7 @@ public:
     void set_score(Engine &engine);
     void render_score(sf::RenderWindow &window);
     Block next_block[4];
+    sf::Image icon;
     sf::Text game_over[2];
 private:
     sf::Text score;

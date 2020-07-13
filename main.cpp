@@ -13,7 +13,7 @@ int main()
     window.setFramerateLimit(30);
     Engine engine;
     UI UI(engine);
-    sf::Clock timer;
+    window.setIcon(512,512,UI.icon.getPixelsPtr());
     while (window.isOpen())
     {
         sf::Event event;

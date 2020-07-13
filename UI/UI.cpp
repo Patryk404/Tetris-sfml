@@ -4,6 +4,9 @@ UI::UI(Engine &engine){
     if(!font.loadFromFile("font/tetris.ttf")){
         std::cout<<"Error"<<std::endl;
     }
+    if(!icon.loadFromFile("images/icon.png")){
+        std::cout<<"Error"<<std::endl;
+    }
     score.setFont(font);
     score.setCharacterSize(20);
     score.setFillColor(sf::Color::Red);
