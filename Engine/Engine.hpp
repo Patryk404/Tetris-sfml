@@ -17,7 +17,7 @@ class Engine {
         void run_timer();
         void set_default();
         void check_events(sf::Event &event);
-        void render(sf::RenderWindow &window);
+        void render(sf::RenderWindow &window,sf::Text game_over[]);
     private:
         const int figures[7][4] =
                 {
@@ -36,9 +36,12 @@ class Engine {
         int score;
         bool rotate;
         bool first;
+        bool play_once;
         sf::Music music;
         sf::SoundBuffer buffer;
+        sf::SoundBuffer game_over_buffer;
         sf::Sound dissmiss;
+        sf::Sound gameover;
         sf::RectangleShape s;
         sf::Clock timer;
         Block a[4],b[4];

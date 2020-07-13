@@ -7,13 +7,19 @@ Engine::Engine(){
     rotate = false;
     game = true;
     first = true;
+    play_once = true;
     Map.use(200,425);
     s.setSize(sf::Vector2f(18,18));
     if(!buffer.loadFromFile("music/dissmiss.wav")){
-        std::cout<<"Error"<<std::endl;
+        std::cout<<"Missing file dissmiss.wav"<<std::endl;
     }
     dissmiss.setBuffer(buffer);
     dissmiss.setVolume(100);
+    if(!game_over_buffer.loadFromFile("music/game_over.wav")){
+        std::cout<<"Missing file game_over.wav"<<std::endl;
+    }
+    gameover.setBuffer(game_over_buffer);
+    gameover.setVolume(100);
     time = 0;
     for (int i=0; i<4; i++)
     {
@@ -27,7 +33,7 @@ Engine::Engine(){
     }
     music.setVolume(50);
     music.setLoop(true);
-    //music.play();
+    music.play();
 }
 
 bool Engine::check(){
@@ -148,12 +154,18 @@ void Engine::check_gameover(){
         int lol = false;
         for (int i=0; i<10; i++)
         {
-            if (Map.field[0][i]){
+            if (Map.field[1][i]){
                 lol = true;
             }
         }
         if (lol){
             game =false;
+            if (play_once)
+            {
+                gameover.play();
+                play_once = false;
+            }
+
         }
 }
 
@@ -163,7 +175,7 @@ void Engine::set_default(){
     delay = 1;
 }
 
-void Engine::render(sf::RenderWindow &window){
+void Engine::render(sf::RenderWindow &window, sf::Text game_over[]){
         window.draw(Map.board);
         for (int i=0;i<20;i++){
          for (int j=0;j<10;j++)
@@ -183,6 +195,11 @@ void Engine::render(sf::RenderWindow &window){
         window.draw(s);
       }
     }
+    if (!game){
+            for(int i=0; i<2; i++){
+                window.draw(game_over[i]);
+            }
+    }
 }
 
 void Engine::check_events(sf::Event &event){
@@ -200,6 +217,19 @@ void Engine::check_events(sf::Event &event){
                 if (event.key.code == sf::Keyboard::Down)
                 {
                     delay = 0.2;
+                }
+            }
+            else if (event.type == sf::Event::KeyPressed && !game){
+                if (event.key.code == sf::Keyboard::Return){
+                        //Engine();
+                        for(int i=0; i<20; i++){
+                            for(int j=0; j<10; j++){
+                                Map.field[i][j] = 0;
+                            }
+                        }
+                        play_once = true;
+                        game = true;
+                        score = 0;
                 }
             }
 }

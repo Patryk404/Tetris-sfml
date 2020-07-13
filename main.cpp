@@ -33,7 +33,7 @@ int main()
                UI.set_score(engine);
         window.clear();
         UI.render_score(window);
-        engine.render(window);
+        engine.render(window,UI.game_over);
         window.display();
     }
         return 0;
